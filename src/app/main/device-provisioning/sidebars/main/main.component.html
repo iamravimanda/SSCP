@@ -1,0 +1,94 @@
+<div class="sidebar-content" style="padding: 0px !important;border: none;box-shadow: none;">
+    <div class="card">
+        <!-- SIDEBAR HEADER -->
+        <div class="header" fxLayout="row" style="padding: 23px 0px !important">
+            <div style="padding-left: 15px;">
+                <mat-icon>assessment</mat-icon>
+            </div>
+            <b style="padding-left: 15px;font-size: 16px;">Request Summary</b>
+        </div>
+        <!-- / SIDEBAR HEADER -->
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div class="nav material2">
+                <div class="nav-item" aria-label="inbox">
+                    <a class="nav-link" matRipple (click)="changeFilter('all',acount)" [ngClass]="{'active accent':filterBy ==='all'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">All </div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{acount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item success" aria-label="inbox">
+                    <a class="nav-link" matRipple (click)="changeFilter('SuccessfullyProvisioned',scount)" [ngClass]="{'active accent':filterBy ==='SuccessfullyProvisioned'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">Success </div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{scount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item info" aria-label="Partial Success" (click)="changeFilter('PartiallySuccessful',pscount)">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='PartiallySuccessful'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">Partial Success </div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{pscount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item warning" aria-label="Received" (click)="changeFilter('RequestProcessing',rcount)">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='RequestProcessing'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">Received </div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{rcount}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-item error" aria-label="Failed" (click)="changeFilter('FailedProvisioning',fcount)">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='FailedProvisioning'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">Failed</div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{fcount}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-item error" aria-label="DeProvisioned" (click)="changeFilter('DeProvisioned',dcount)">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='DeProvisioned'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;" fxLayoutAlign="start">De-Provisioned</div>
+                            <div class="title" style="float: right;" fxLayoutAlign="end">{{dcount}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 14px;">
+        <div class="card ">
+
+            <div class="header" fxLayout="row" style="padding: 23px 0px !important">
+                <div style="padding-left: 15px;">
+                    <mat-icon>bar_chart</mat-icon>
+                </div>
+                <b style="margin-left: 8px;font-size: 16px;">Device Provisioned Summary</b>
+            </div>
+
+            <div class="content">
+                <div class="nav material2">
+                    <canvas baseChart [datasets]="barChartData" [labels]="chartData.labels" [colors]="chartData.colors" [legend]="barChartLegend" [chartType]="chartData.chartType" style="height: 160px !important;display:flex;padding:5px">
+                    </canvas>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- / SIDEBAR CONTENT -->

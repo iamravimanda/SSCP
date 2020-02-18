@@ -1,0 +1,219 @@
+<div id="Createtenants" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/tenant-management'" *ngIf="showbackbutton == true">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <span class="logo-text h1  heading-res">
+                    <b>Create Tenant </b>
+                </span>
+            </div>
+        </div>
+        <div class="content-card p-24" fusePerfectScrollbar
+            style="margin-bottom: 20px !important;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;max-height: fit-content;">
+            <form [formGroup]="createTenantForm" (ngSubmit)="saveTenant(tenant)">
+                <div *ngIf="showLoadingIndicator" class="spinner"></div>
+                <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start"
+                    style="border-bottom: 1px #949494 solid;">
+                    <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                        <div fxFlex="100" fxFlex.gt-sm="100%">
+                            <div>
+                                <mat-form-field appearance="legacy" style="min-width: 90%;">
+                                    <mat-label>Tenant Name <span style="color: red;"><b>*</b></span></mat-label>
+                                    <input matInput placeholder="Tenant Name" formControlName="Name" [ngClass]="{'is-invalid': submitted && f.Name.errors }" />
+                                </mat-form-field>
+                                <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.Name.errors.required" style="color: red;">Name is required</div>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="legacy" style="width: 90%;">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description" formControlName="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div formGroupName="Address">
+                                <div fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                                    <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                                <mat-form-field appearance="legacy" class="wp-60">
+                                                    <mat-label>Street</mat-label>
+                                                    <input matInput placeholder="Street" formControlName="Street"  />
+                                                </mat-form-field>
+                                            </div>
+                                            <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                                <mat-form-field appearance="legacy" class="wp-60">
+                                                    <mat-label>Area</mat-label>
+                                                    <input matInput placeholder="Area" formControlName="Area" />
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                                    <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                            <mat-form-field appearance="legacy" class="wp-60">
+                                                <mat-label>City</mat-label>
+                                                <input matInput placeholder="City" formControlName="City" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" style="display:block ;">
+                                            <mat-form-field class="wp-60">
+                                                <mat-label>Country <span style="color: red;"><b>*</b></span></mat-label>
+                                                <mat-select formControlName="Country"   [ngClass]="{'is-invalid': submitted && fa.Country.errors }">
+                                                    <mat-option *ngFor="let country of Countries" [value]="country">
+                                                        {{ country }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <div *ngIf="submitted && fa.Country.errors" class="invalid-feedback">
+                                                <div *ngIf="fa.Country.errors.required" style="color: red;">Country is required</div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                                    <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" style="display:block ;">
+                                            <mat-form-field style="min-width: 80%;">
+                                                <mat-label>State <span style="color: red;"><b>*</b></span></mat-label>
+                                                
+                                                <input matInput placeholder="State" formControlName="State" [ngClass]="{'is-invalid': submitted && fa.State.errors }" />
+                                            </mat-form-field>
+                                            <div *ngIf="submitted && fa.State.errors" class="invalid-feedback">
+                                                <div *ngIf="fa.State.errors.required" style="color: red;">State is required</div>
+                                            </div>
+                                            </div>
+                                          
+                                        </div>
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" style="display:block ;">
+                                            <mat-form-field appearance="legacy" class="wp-60">
+                                                <mat-label>ZipCode <span style="color: red;"><b>*</b></span></mat-label>
+                                                <input matInput placeholder="ZipCode" formControlName="ZipCode"  [ngClass]="{'is-invalid': submitted && fa.ZipCode.errors }"/>
+                                               
+                                            </mat-form-field>
+                                            <div *ngIf="submitted && fa.ZipCode.errors" class="invalid-feedback">
+                                                <div *ngIf="fa.ZipCode.errors.required" style="color: red;">ZipCode is required</div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-sm="50%">
+                        <mat-accordion class="example-headers-align" formArrayName="ContactDetails">
+                            <div *ngFor="let group of contactArray.controls; let i = index" [formGroupName]="i" style="padding: 3px;">
+                                <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+                                    <mat-expansion-panel-header style="height: 42px;" class="mat-expansion-border">
+                                        <mat-panel-title>
+                                            Contact Details.
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%"
+                                                fxLayout.gt-sm="row">
+                                                <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%"
+                                                    fxLayout.gt-sm="row">
+                                                    <div fxFlex="100" style="display:block ;">
+                                                    <mat-form-field style="width: -webkit-fill-available;">
+                                                        <mat-label>Name <span style="color: red;"><b>*</b></span>
+                                                        </mat-label>
+                                                        <input matInput placeholder="Name" formControlName="Name" />
+                                                    </mat-form-field>
+                                                    <div *ngIf="submitted &&  contactArray.controls[i].get('Name').errors?.required"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="contactArray.controls[i].get('Name').errors?.required" style="color: red;">Name is required</div>
+                                                    </div>
+                                                    </div>
+
+                                                    
+                                                  
+                                                </div>
+                                                <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="50%"
+                                                    fxLayout.gt-sm="row">
+                                                    <mat-form-field style="width: -webkit-fill-available;">
+                                                        <input matInput placeholder="Job Title"
+                                                            formControlName="JobTitle" />
+                                                    </mat-form-field>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                                        <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%" fxLayout.gt-sm="row">
+                                            <div fxFlex="100" fxLayout="column" fxFlex.gt-sm="100%"
+                                                fxLayout.gt-sm="row">
+                                                <div fxFlex="100" style="display:block ;">
+                                                    <mat-form-field style="width: -webkit-fill-available;">
+                                                        <mat-label>Phone Number <span style="color: red;"><b>*</b></span>
+                                                        </mat-label>
+                                                        <input matInput placeholder="Phone Number" formControlName="Phone" />
+                                                    </mat-form-field>
+                                                    <div *ngIf="submitted &&  contactArray.controls[i].get('Phone').errors?.required"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="contactArray.controls[i].get('Phone').errors?.required" style="color: red;">Phone is required</div>
+                                                    </div>
+                                                    <div *ngIf="contactArray.controls[i].get('Phone').errors?.pattern" class="invalid-feedback" style="color: red;">Please enter only Numbers!</div>
+                                                </div>
+                                                <div fxFlex="100" style="display: block;">
+                                                    <mat-form-field style="width: -webkit-fill-available;">
+                                                        <mat-label>Email <span style="color: red;"><b>*</b></span>
+                                                        </mat-label>
+                                                        <input matInput placeholder="Email" formControlName="Email" />
+                                                    </mat-form-field>
+                                                    <div *ngIf="submitted && contactArray.controls[i].get('Email').errors?.required"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="contactArray.controls[i].get('Email').errors?.required"
+                                                            style="color: red;">Email is required</div>
+                                                    </div>
+                                                    <div *ngIf="contactArray.controls[i].get('Email').errors?.email"
+                                                        class="invalid-feedback" style="color: red;">
+                                                        Please enter valid email format!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;" fxLayoutAlign="flex-start">
+                                        <mat-checkbox formControlName="IsPrimary">
+                                            set as primary
+                                        </mat-checkbox>
+                                    </div>
+                                    <mat-action-row>
+                                        <div *ngIf="i < 2">
+                                            <div (click)="addContact(i)">
+                                                <mat-icon style="color: #039BE5 !important;"> add_circle </mat-icon>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="i > 0">
+                                            <div (click)="removeContact(i)">
+                                                <mat-icon style="color: #039BE5 !important;"> remove_circle </mat-icon>
+                                            </div>
+                                        </div>
+                                    </mat-action-row>
+                                </mat-expansion-panel>
+                            </div>
+                        </mat-accordion>
+                    </div>
+                </div>
+           
+                <div style="display: flex;" fxLayoutAlign="end end" style="padding: 5px; margin-top: 10px;">
+                    <a [routerLink]="'/tenant-management'"  class="a-tag mr-0 mr-sm-16 cancelbtn"> Cancel</a>
+                    <button mat-button class="save-button  mat-raised-button mat-accent" aria-label="SAVE">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

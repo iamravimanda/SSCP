@@ -1,0 +1,25 @@
+.ps {
+    position: relative;
+
+    > .ps__rail-x {
+        z-index: 99999;
+    }
+
+    > .ps__rail-y {
+        z-index: 99999;
+        left: auto !important;
+        width:6px !important;
+        background-color: #eeeeee;
+
+        &:hover{
+            >.ps__thumb-y {
+             background-color: #999;
+             width: 6px !important;
+            }
+
+        }
+    }
+    > .ps--active-y{
+        width: 6px !important;
+    }
+}

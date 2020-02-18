@@ -1,0 +1,156 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+.mat-checkbox-inner-container {
+    height: 12px !important;
+    width: 12px !important;
+}
+
+.success {
+    color: #4dc758;
+}
+
+.warning {
+    color: #f79321;
+}
+
+.error {
+    color: #e52125;
+}
+
+.info {
+    color: #0876cb;
+}
+
+.m-2rem {
+    margin: 2rem;
+}
+.mr-10px {
+    margin-right: 10px;
+}
+
+.mat-table-alter {
+    .mat-header-row {
+        background-color: #0f6cb2 !important;
+
+        .mat-header-cell {
+            color: #fff !important;
+        }
+    }
+    .mat-row:nth-child(even) {
+        background-color: #f6fafd;
+    }
+
+    .mat-row:nth-child(odd) {
+        background-color: #e7f0f7;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .ml-sm-5 {
+        margin-left: 5px !important;
+    }
+}
+
+.h-auto {
+    height: auto;
+    min-height: auto !important;
+    max-height: initial;
+}
+
+.snackSuccess {
+    background-color: #4dc758 !important;
+    color: #fff !important;
+    .mat-simple-snackbar-action {
+        color: #fff !important;
+    }
+}
+.snackError {
+    background-color: #e52125 !important;
+    color: #fff !important;
+    .mat-simple-snackbar-action {
+        color: #fff !important;
+    }
+}
+.snackWarning {
+    background-color: #f79321 !important;
+    color: #fff !important;
+    .mat-simple-snackbar-action {
+        color: #fff !important;
+    }
+}
+.snackInfo {
+    background-color: #0876cb !important;
+    color: #fff !important;
+    .mat-simple-snackbar-action {
+        color: #fff !important;
+    }
+}
+
+ng2-smart-table {
+    font-size: 14px !important;
+
+    table {
+        border-bottom: 2px solid #dee2e6;
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+
+        thead tr th {
+            border-bottom-width: 2px;
+            border-bottom: 2px solid #dee2e6;
+            position: relative;
+            padding: 0.875rem 1.25rem;
+            //   border: 2px solid #edf1f7;
+            vertical-align: middle;
+        }
+    }
+}
+
+.colored-dialog-panal {
+    .mat-dialog-container {
+        padding: 0 !important;
+        overflow: hidden;
+
+        .mat-dialog-title {
+            margin: 0;
+            display: block;
+            padding: 10px 20px;
+            background: #039be5 !important;
+            color: white;
+        }
+
+        .mat-dialog-content {
+            overflow: auto;
+            padding: 10px 20px;
+            margin: 0;
+
+            .mat-form-field {
+                width: 100%;
+            }
+        }
+
+        .mat-dialog-actions {
+            padding: 20px 10px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.btn-colored-blue {
+    background: #1983df !important;
+    color: white !important;
+}
+
+.btn-colored-black {
+    background: black !important;
+    color: white !important;
+}
+
+.rounded {
+    border-radius: 50px !important;
+}

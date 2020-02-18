@@ -1,0 +1,201 @@
+<div id="contacts" class="page-layout carded fullwidth outer-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+    <div class="center">
+        <!-- HEADER -->
+
+        <div class="header accent-600" fxLayout="column" fxLayoutAlign="end" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center" style="height: 136px;">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center" class="hdr">
+                <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+                    <button mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm
+                        (click)="toggleSidebar('contacts-main-sidebar')">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        <b>Provisioning Requests </b>
+                    </span>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="end" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center"
+                class="mb-30 width">
+                <div>
+                    <div class="p-tb-10" class="comp-drp-wdt">
+
+                        <label for="search"
+                            style=" display: inline-block; margin-bottom: .5rem;margin-left: 1rem;">Company</label>
+                        <div class="search-wrapper mt-16 mt-sm-0" style="padding: 0px 5px;">
+
+                            <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center"
+                                style="padding: 0x 5px;">
+                                <mat-form-field style="position: relative;">
+
+                                    <input id="name" aria-label="Name" matInput [formControl]="NameControl"
+                                        [matAutocomplete]="auto" (keydown)="onKeydown($event)"
+                                        style="margin-top: 6px;font-size: 14px;text-align: center;" />
+                                    <mat-icon matSuffix style="height: 38px;margin-left: -15px;">keyboard_arrow_down
+                                    </mat-icon>
+
+                                </mat-form-field>
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                    <mat-option *ngFor="
+                                        let option of filteredOptions
+                                            | async
+                                    " [value]="option.name">
+                                        {{ option.name }}
+                                    </mat-option>
+                                </mat-autocomplete>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center"
+                    fxFlex class="p-tb-10">
+                    
+                        <mat-accordion style="width: 500px;">
+                            <mat-expansion-panel [(expanded)]="xpandStatus" class="mat-expansion-panel-clr"
+                                [disabled]="disableMe">
+                                <mat-expansion-panel-header class="mat-expansion-panel-header disable_ripple"  (click)="$event.stopPropagation();"
+                                >
+                                <mat-panel-title (click)="$event.stopPropagation();" style="padding: 5px;">
+                                    <div class=" mt-16 mt-sm-0" style="padding: -1px 5px;" >
+                                        <label for="fromDate"
+                                           class="todate-fromdate">From
+                                            Date</label>
+                                        <div class="no-search" >
+                                            <div class="element" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                                                <input matInput [readonly]="!editable" [matDatepicker]="frompicker"
+                                                    [(ngModel)]="fromdate.value" placeholder="From Date"
+                                                    [max]="todate.value" id="fromDate" (click)="frompicker.open()">
+                                                <mat-datepicker-toggle matSuffix [for]="frompicker">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #frompicker></mat-datepicker>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-right: 10px;">
+                                        <div class=" mt-16 mt-sm-0" style="padding: 0px 5px;">
+                                            <label for="toDate"
+                                               class="todate-fromdate">To
+                                                Date</label>
+                                            <div class="no-search">
+                                                <div class="element" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                                               
+                                                    <input matInput [readonly]="!editable" [matDatepicker]="topicker"
+                                                        [(ngModel)]="todate.value" placeholder="To Date" [max]="maxDate"
+                                                        id="toDate" (click)="topicker.open()">
+                                                    <mat-datepicker-toggle matSuffix [for]="topicker">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #topicker></mat-datepicker>
+
+                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-panel-title>
+                                </mat-expansion-panel-header>
+                            
+                                <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+            
+                                <div fxFlex="100" fxLayout="column" fxLayout.gt-sm="row">
+                                    <div style="padding: 0px 5px 0px 0px;">
+                                        <mat-label class="ml-6">Request ID
+                                        </mat-label>
+                                        <input matInput placeholder="Request ID" [formControl]="tenantSCode"
+                                            id="tenantSCode" class="input-text-clr" style="padding-left: 15px" />
+                                    </div>
+                                </div>
+                                <div fxFlex="100" fxLayout="column"  fxLayout.gt-sm="row">
+                                    <div style="padding: 0px 5px 0px 0px;">
+                                        <mat-label class="ml-6">File Name
+                                        </mat-label>
+                                        <input matInput placeholder="File Name" [formControl]="fileName" id="fileName"
+                                            class="input-text-clr pl-15" />
+                                    </div>
+                                </div>
+                                <div fxFlex="100" fxLayout="column"  fxLayout.gt-sm="row">
+                                    <div style="padding: 0px 5px 0px 0px;">
+                                        <mat-label class="ml-6">Status
+                                        </mat-label>
+                                              <!-- <select mat-select  class="input-text-clr" style="width: 180px;"   [formControl]="dpStatus">
+                                                <option   value="all">All</option>
+                                                <option  value="SuccessfullyProvisioned">Success</option>
+                                                <option   value="FailedProvisioning">Failed</option>
+                                                <option  value="Received">Received</option>
+                                                <option  value="PartiallySuccessful"> Partial Success</option>
+                                              </select> -->
+                                              <mat-select class="status-drp pl-15" placeholder="All"    [formControl]="dpStatus" style="padding: 6px;">
+                                                <mat-option class="status-drp-opt-clr" value="all">All</mat-option>
+                                                <mat-option class="status-drp-opt-clr" value="SuccessfullyProvisioned">Success</mat-option>
+                                                <mat-option class="status-drp-opt-clr" value="FailedProvisioning">Failed</mat-option>
+                                                <mat-option class="status-drp-opt-clr" value="Received">Received</mat-option>
+                                                <mat-option class="status-drp-opt-clr" value="PartiallySuccessful">Partial Success</mat-option>
+
+                                              </mat-select> 
+                                            </div>
+                                </div>
+                                </div>
+                        
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                   
+                </div>
+                <div class="p-tb-10" style="margin-right: 5px;">
+                    <button mat-button (click)='xpandStatus=xpandStatus?false:true'>
+                        <mat-icon>
+                            filter_list
+                        </mat-icon>
+                    </button>
+
+                    <button mat-button class="save-button  mat-raised-button mat-accent serchbtn" aria-label="SAVE"
+                        (click)="applyFilter()" class="search-btn">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content">
+            <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                <div fxFlex="100" fxFlex.gt-sm="310px" style="box-shadow: none;">
+                    <!-- SIDEBAR -->
+                    <fuse-sidebar class="sidebar" name="contacts-main-sidebar" position="left" lockedOpen="gt-sm"
+                        style="background-color:transparent;box-shadow: none !important;">
+
+                        <!-- SIDEBAR CONTENT -->
+                        <div class="content">
+                            <contacts-main-sidebar [@animate]="{value:'*'}"></contacts-main-sidebar>
+                        </div>
+                        <!-- / SIDEBAR CONTENT -->
+
+                    </fuse-sidebar>
+                    <!-- / SIDEBAR -->
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="100%" style="box-shadow: none;">
+                    <!-- CENTER -->
+                    <div class="center pb-56">
+                        <device-provisioning-list></device-provisioning-list>
+                    </div>
+                    <!-- / CENTER -->
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT-->
+    </div>
+</div>
+
+<!-- ADD CONTACT BUTTON -->
+<button mat-fab class="accent" id="add-contact-button" (click)="newContact()" aria-label="add contact"
+    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>person_add</mat-icon>
+</button>
+<!-- / ADD CONTACT BUTTON -->

@@ -1,0 +1,50 @@
+<div class="sidebar-content" style="padding: 0px !important;border: none;box-shadow: none;">
+    <div class="card">
+        <!-- SIDEBAR HEADER -->
+        <div class="header" fxLayout="row" style="padding: 23px 0px !important">
+            <div style="padding-left: 15px;">
+                <mat-icon>assessment</mat-icon>
+            </div>
+            <b style="padding-left: 15px;font-size: 16px;">Top Tenant Countries</b>
+        </div>
+        <!-- / SIDEBAR HEADER -->
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div class="nav material2">             
+    
+                <div class="content">
+                    <div class="nav material2" style="padding-bottom: 15px;">
+                        <canvas baseChart [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+                            [chartType]="chartType"
+                            style="display:flex;padding:5px;width: 100%;">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 14px;">
+        <div class="card ">
+
+            <div class="header" fxLayout="row" style="padding: 23px 0px !important">
+                <div style="padding-left: 15px;">
+                    <mat-icon>bar_chart</mat-icon>
+                </div>
+                <b style="margin-left: 8px;font-size: 16px;">Status</b>
+            </div>
+
+            <div class="content">
+                <div class="nav material2" style="padding-bottom: 5px;">
+                    <canvas height="250"   baseChart [datasets]="hchartDatasets" [labels]="hchartLabels" [colors]="hchartColors"
+                        [legend]="false" [chartType]="hchartType"
+                        style="height: 160px !important;display:flex;padding:5px">
+                    </canvas>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- / SIDEBAR CONTENT -->

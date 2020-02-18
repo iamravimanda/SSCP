@@ -1,0 +1,79 @@
+<div mat-dialog-content style="max-height: 100%;">
+    <div style="margin-bottom: 50px;">
+        <div mat-dialog-actions style="float:right;">
+            <button mat-button (click)="closeDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <button mat-button><span class="mr-10px"><b>{{name}}</b></span>           
+        </button>
+        <button mat-button><span class="mr-10px">Export</span>
+            <mat-icon>cloud_download</mat-icon>
+        </button>
+        <button mat-button><span class="mr-10px">Refresh</span>
+            <mat-icon>refresh</mat-icon>
+        </button>
+        <mat-form-field class="example-full-width">
+            <input type="tel" matInput>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="m-2rem">
+        <label>
+            Health : <b>{{deviceStatus}}</b>
+        </label>
+        <!-- <img class="mr-10px" src="{{deviceData.Status | statusIcon}}">{{deviceData.Status | convertStatus}} -->
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Details">
+            <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+                <div class="profile-box info-box general" fxLayout="column" *ngIf="deviceData">
+
+                    <div class="info-line " style="padding:15px 0px 7px 0px">
+                        <div class="title1"><b>Device ID : <span class="info"> {{deviceData.DeviceId}} </span> </b> </div>
+                    </div>
+
+                    <div class="info-line" style="padding: 7px 0px;">
+                        <div class="title1"><b>Company Name : <span class="info"> {{deviceData.TenantName}} </span> </b>
+                        </div>
+                    </div>
+
+                    <div class="info-line" style="padding: 7px 0px;">
+                        <div><b>Device Type : <span class="info"> {{deviceData.DeviceType}} </span> </b>
+                        </div>
+                    </div>
+                    <div class="info-line" style="padding: 7px 0px;">
+                        <div ><b>Health : <span class="info"> {{deviceData.HealthStatus}} </span> </b>
+                        </div>
+                    </div>
+
+                    <div class="info-line" style="padding: 7px 0px;">
+                        <div class="title1"><b>Device Group : <span class="info"> {{deviceData.DeviceGroup}} </span> </b>
+                        </div>
+                    </div>
+                    
+
+                    <div class="info-line">
+                        <div class="title1"><b>Data Meter (KB) : <span class="info"> {{deviceData.DataMeter |number:'3.2-2'}} </span>
+                            </b> </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Attributes">
+            <h3>
+                <--- TODO--> Api not received !
+            </h3>
+        </mat-tab>
+        <mat-tab label="Messages">
+            <h3>
+                <--- TODO--> Api not received !
+            </h3>
+        </mat-tab>
+    </mat-tab-group>
+</div>

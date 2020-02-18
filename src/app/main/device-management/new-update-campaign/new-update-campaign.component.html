@@ -1,0 +1,241 @@
+<div id="newCampaign" class="page-layout carded fullwidth inner-scroll">
+  <div class="top-bg accent"></div>
+
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div class="header accent pt-24 pb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-between center">
+      <div fxLayout="row" fxLayoutAlign="start center" class="hdr">
+        <div class="logo mt-12" fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm
+            (click)="toggleSidebar('devices-main-sidebar')">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <span class="logo-text h1  heading-res" [@animate]="{
+                            value: '*',
+                            params: { delay: '100ms', x: '-25px' }
+                        }">
+            <b>New Update Campaign</b>
+          </span>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+      <!-- SEARCH -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card" fusePerfectScrollbar style="max-height: fit-content;">
+      <mat-card>
+        <div class="horizontal-stepper-wrapper">
+
+          <!-- HORIZONTAL STEPPER EXAMPLE -->
+          <mat-horizontal-stepper labelPosition="bottom" #stepper>
+
+            <mat-step [stepControl]="horizontalStepperStep1">
+
+              <form fxLayout="column">
+
+                <ng-template matStepLabel>Details</ng-template>
+
+                <div fxFlex="1 0 auto" fxLayout="column">
+
+                  <mat-form-field appearance="outline" fxFlex="100" style="padding: 5px;">
+                    <mat-label>Name</mat-label>
+                    <input matInput required>
+                    <mat-hint align="start">Minimum 60 characters </mat-hint>
+
+                    <mat-error>First Name is required!</mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" fxFlex="100" style="padding: 5px;">
+                    <mat-label>Description:(optional)</mat-label>
+
+                    <textarea matInput placeholder="Description"></textarea>
+                    <mat-error>Description</mat-error>
+                  </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <button mat-raised-button matStepperNext type="button" color="accent">
+                    Next
+                  </button>
+                </div>
+
+              </form>
+
+            </mat-step>
+
+            <mat-step [stepControl]="horizontalStepperStep2">
+
+              <form fxLayout="column" [formGroup]="horizontalStepperStep2">
+
+                <ng-template matStepLabel>Firmware</ng-template>
+
+                <div fxFlex="1 0 auto" fxLayout="row">
+
+                  <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-xs="row"
+                    fxLayoutAlign.gt-xs="space-between center" class="mb-30">
+                    <div fxLayout="row" fxFlex class="p-tb-10 " style="margin-right: 15px;">
+
+                      <div style="margin-right: 15px;width:150px">
+
+                        <div style="padding: 30px;">
+
+                          <mat-label>Firmware</mat-label>
+                        </div>
+                      </div>
+                      <div style="margin-right: 15px;min-width:150px">
+
+                        <div>
+                          <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+                            <mat-label>Search</mat-label>
+                            <input matInput required>
+
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div style="margin-right: 15px;min-width:150px">
+
+                        <div>
+                          <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+
+                            <select matNativeControl required>
+                              <option value="Grop by Device">Group by Device</option>
+                              <option value="Group By Tenant">Group By Tenant</option>
+
+                            </select>
+
+
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div>
+
+
+
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <!-- 
+               -->
+                Need To implement
+
+                <!-- 
+               -->
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                    Previous
+                  </button>
+                  <button mat-raised-button matStepperNext type="button" color="accent">
+                    Next
+                  </button>
+                </div>
+
+              </form>
+
+            </mat-step>
+
+            <mat-step [stepControl]="horizontalStepperStep3">
+
+              <form fxLayout="column" [formGroup]="horizontalStepperStep3">
+
+                <ng-template matStepLabel>Devices</ng-template>
+
+                <div fxFlex="1 0 auto" fxLayout="column">
+                  <mat-label>Devices</mat-label>
+                  <mat-card style="height: auto;background-color: #EFF8FF;">
+                    <mat-card-content>
+                      
+                      <div fxLayout="row" fxLayoutAlign="start start">
+                          <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+                              <mat-label>Tenant Name</mat-label>
+                              <input matInput>
+  
+  
+                            </mat-form-field>
+  
+                            <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+                              <select matNativeControl required>
+                                <option value="Device Type">Device1</option>
+  
+                              </select>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+                                <mat-label>Device ID</mat-label>
+                                <input matInput>
+    
+                              </mat-form-field>
+    
+                              <mat-form-field appearance="legacy" fxFlex="100" style="padding: 5px;">
+                                <select matNativeControl required>
+                                  <option value="Device Type">Device Type</option>
+    
+                                </select>
+                              </mat-form-field>
+                          </div>
+                          <div fxLayout="row" fxLayoutAlign="center center">
+                            <mat-card  fxLayoutAlign="center center" style="height: 100px;width: 300px;background-color: #039BE5;"> 
+<mat-card-content>
+ <span style="color: #fff;"> <mat-icon style="font-size: -webkit-xxx-large;">dvr</mat-icon> <span style="margin-left: 30px;font-size: 20px;"> 40 Devices </span> </span>
+</mat-card-content>
+                            </mat-card>
+                          </div>
+
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+
+
+               
+                  <div fxLayout="row" fxLayoutAlign="center center" style="padding:5px;">
+                      <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                        Previous
+                      </button>
+                      <button mat-raised-button matStepperNext type="button" color="accent">
+                        Next
+                      </button>
+                    </div>
+
+              </form>
+
+            </mat-step>
+
+            <mat-step>
+
+              <ng-template matStepLabel>Done</ng-template>
+
+              <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
+                Thank your for filling out our form.
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                  Previous
+                </button>
+                <button mat-raised-button type="button" color="accent" (click)="finishHorizontalStepper()">
+                  Finish
+                </button>
+              </div>
+
+            </mat-step>
+
+          </mat-horizontal-stepper>
+          <!-- / HORIZONTAL STEPPER EXAMPLE -->
+          </div>
+  </mat-card>
+    </div>
+  </div>
+
+</div>

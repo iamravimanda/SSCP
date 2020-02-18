@@ -1,0 +1,88 @@
+<div class="sidebar-content" style="padding: 0px !important;border: none;box-shadow: none;">
+    <!-- <div class="card">
+       
+        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon>assessment</mat-icon> <b>Device Management</b>
+        </div>
+           <div class="content py-16" fusePerfectScrollbar>
+            <div class="nav material2">
+                <div class="nav-item" aria-label="inbox">
+                    <a class="nav-link" matRipple (click)="changeFilter('all')"
+                        [ngClass]="{'active accent':filterBy ==='all'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;"
+                                fxLayoutAlign="start">All </div>
+                            <div class="title" style="float: right;"
+                                fxLayoutAlign="end">{{acount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item success" aria-label="inbox">
+                    <a class="nav-link" matRipple
+                        (click)="changeFilter('Success')"
+                        [ngClass]="{'active accent':filterBy ==='Success'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;"
+                                fxLayoutAlign="start">Success </div>
+                            <div class="title" style="float: right;"
+                                fxLayoutAlign="end">{{scount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item info" aria-label="Partial Success"
+                    (click)="changeFilter('Partial')">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='PartiallyProcessing'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;"
+                                fxLayoutAlign="start">Partial Success </div>
+                            <div class="title" style="float: right;"
+                                fxLayoutAlign="end">{{pscount}}</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="nav-item warning" aria-label="Received"
+                    (click)="changeFilter('Received')">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='Received'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;"
+                                fxLayoutAlign="start">Received </div>
+                            <div class="title" style="float: right;"
+                                fxLayoutAlign="end">{{rcount}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-item error" aria-label="Failed"
+                    (click)="changeFilter('FailedProcessing')">
+                    <a class="nav-link" matRipple [ngClass]="{'active
+                        accent':filterBy ==='FailedProcessing'}">
+                        <div style="width:100%">
+                            <div class="title" style="float: left;"
+                                fxLayoutAlign="start">Failed</div>
+                            <div class="title" style="float: right;"
+                                fxLayoutAlign="end">{{fcount}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="card ">
+        <div class="header" fxLayout="row" style="padding: 20px 0px !important" >
+          <div style="padding-left: 15px;">  <mat-icon >assessment</mat-icon> </div> <b style="padding-left: 15px; font-size: 16px;">Device Snapshot</b>
+        </div>
+        <div class="content" style="padding: 4px 10px 6px 6px;" style="padding: 10px 2px;">
+            <canvas baseChart
+                [chartType]="hchartType"
+                [datasets]="hchartDatasets"
+                [labels]="hchartLabels"
+                [colors]="hchartColors"
+                [options]="hchartOptions"
+                [legend]="false"></canvas>
+        </div>
+    </div>
+</div>

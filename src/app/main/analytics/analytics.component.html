@@ -1,0 +1,179 @@
+<div id="dashboard-analytics" class="page-layout carded fullwidth outer-scroll">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+    <!-- CENTER -->
+    <div class="center">
+        <div style="padding: 24px 0px !important;" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-between center">
+            <span class="logo-text h3" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}" style="color:#ffffff;font-weight: bold;">
+                Dashboard
+            </span>
+        </div>
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <div class="content">
+                <div class="left">
+                    <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+
+                        <div class="widget pr-24" fxFlex="100" fxFlex.gt-sm="50">
+                            <!-- Widget 7 -->
+                            <div class="fuse-card auto-width">
+                                <div class="p-16">
+                                    <div class="h1 font-weight-300">Provisioning Results</div>
+                                </div>
+                                <div class="h-200">
+                                    <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widgets.widget7.scheme"
+                                        [results]="widgets.widget7.devices" [doughnut]="true">
+                                    </ngx-charts-pie-chart>
+                                </div>
+
+                                <div class="p-16" fxLayout="row" fxLayoutAlign="center center">
+                                    <div class="px-16" fxLayout="column" fxLayoutAlign="start center" *ngFor="let device of
+                                                widgets.widget7.devices">
+                                        <div class="h4 secondary-text">{{device.name}}</div>
+                                        <div class="h2 font-weight-300 py-8">{{device.value}}%</div>
+                                        <div fxLayout="row" fxLayoutAlign="center
+                                                    center">
+                                            <mat-icon class="s-18 pr-4 red-fg" *ngIf="device.change <0">
+                                                arrow_downward
+                                            </mat-icon>
+                                            <mat-icon class="s-18 pr-4 green-fg" *ngIf="device.change> 0">
+                                                arrow_upward
+                                            </mat-icon>
+                                            <div class="h5 red-fg" [ngClass]="{'red-fg': device.change
+                                                    <0, 'green-fg': device.change> 0}">
+                                                {{device.change}}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-divider mb-0"></div>
+
+                                <div class="px-16" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <mat-form-field>
+                                        <mat-select class="simplified" value="7days">
+                                            <mat-option value="today">Today</mat-option>
+                                            <mat-option value="yesterday">Yesterday</mat-option>
+                                            <mat-option value="7days">Last 7 days</mat-option>
+                                            <mat-option value="28days">Last 28 days</mat-option>
+                                            <mat-option value="90days">Last 90 days</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <button mat-button color="accent">OVERVIEW</button>
+                                </div>
+
+                            </div>
+                            <!-- / Widget 7 -->
+                        </div>
+
+                        <div class="widget" fxFlex="100" fxFlex.gt-sm="50">
+
+                            <!-- Widget 9 -->
+                            <div class="fuse-card auto-width">
+                                <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 12px;">
+                                    <div class="h1 pr-16">Company wise</div>
+                                    <div>
+                                        <button mat-icon-button [matMenuTriggerFor]="card20Menu" aria-label="more">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+
+                                        <mat-menu #card20Menu="matMenu">
+                                            <button fxLayout="row" fxLayoutAlign="start
+                                                        center" mat-menu-item>
+                                                <mat-icon color="accent">check_box</mat-icon>
+                                                <span>Show Clicks</span>
+                                            </button>
+                                            <button fxLayout="row" fxLayoutAlign="start
+                                                        center" mat-menu-item>
+                                                <mat-icon color="accent">check_box</mat-icon>
+                                                <span>Show Conversion</span>
+                                            </button>
+                                            <button fxLayout="row" fxLayoutAlign="start
+                                                        center" mat-menu-item>
+                                                <mat-icon>check_box_outline_blank</mat-icon>
+                                                <span>Show CPC</span>
+                                            </button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <table class="simple clickable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="text-right">Provisioned</th>
+                                            <th class="text-right">Failed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of
+                                                    widgets.widget9.rows">
+                                            <td>{{row.title}}</td>
+                                            <td class="text-right">{{row.clicks}}</td>
+                                            <td class="text-right">{{row.conversion}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="px-16" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <mat-form-field>
+                                        <mat-select class="simplified" value="7days">
+                                            <mat-option value="today">Today</mat-option>
+                                            <mat-option value="yesterday">Yesterday</mat-option>
+                                            <mat-option value="7days">Last 7 days</mat-option>
+                                            <mat-option value="28days">Last 28 days</mat-option>
+                                            <mat-option value="90days">Last 90 days</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <button mat-button color="accent">VIEW ALL</button>
+                                </div>
+                            </div>
+                            <!-- / widget 9 -->
+                        </div>
+                    </div>
+                    <br>
+                    <div fxLayout="column" fxLayoutAlign="start" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start start">
+                            <div class="main-widget" fxFlex="100" fxFlex.gt-sm="100">
+
+                                    <div class="position-relative p-24 blue-600" fxLayout="row" fxLayoutAlign="space-between center"
+                                        style="border-radius: 5px 5px 0px 0px">
+                                        <div fxLayout="column" fxLayoutAlign="start start">
+                                            <span class="h2">Devices</span>
+                                            <span class="h5 secondary-text">Device connections by month</span>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="start center">
+                                            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                                                (click)="widget1SelectedYear = '2016'"
+                                                [ngClass]="{'blue-700': widget1SelectedYear === '2017'}">
+                                                2017
+                                            </div>
+                                            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                                                (click)="widget1SelectedYear = '2017'"
+                                                [ngClass]="{'blue-700': widget1SelectedYear === '2018'}">
+                                                2018
+                                            </div>
+                                            <div class="py-8 px-12 border-radius-2 line-height-1 cursor-pointer"
+                                                (click)="widget1SelectedYear = '2018'"
+                                                [ngClass]="{'blue-700': widget1SelectedYear === '2019'}">
+                                                2019
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="position-relative h-256 pb-16 blue-600" style="border-radius: 0px 0px 5px 5px;">
+                                        <canvas baseChart [datasets]="widgets.widget1.datasets[widget1SelectedYear]"
+                                            [labels]="widgets.widget1.labels" [colors]="widgets.widget1.colors"
+                                            [options]="widgets.widget1.options" [chartType]="widgets.widget1.chartType">
+                                        </canvas>
+                                    </div>
+                    
+                                </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

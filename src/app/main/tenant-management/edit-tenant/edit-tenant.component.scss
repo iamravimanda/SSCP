@@ -1,0 +1,145 @@
+#EditTenant {
+  .mat-expansion-panel-header {
+    height: 42px !important;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .mat-divider {
+    border-width: 1px;
+    border-top-color: black;
+  }
+  .mat-form-field {
+    font-size: 14px !important;
+  }
+  .p-24 {
+    padding: 24px !important;
+  }
+
+  .header {
+    .tenant-image {
+      overflow: hidden;
+      width: 56px;
+      min-width: 56px;
+      max-width: 56px;
+      height: 56px;
+      min-height: 56px;
+      max-height: 56px;
+      border-radius: 4px;
+
+      img {
+        height: 100%;
+        width: auto;
+        max-width: none;
+      }
+    }
+
+    .subtitle {
+      margin: 6px 0 0 0;
+    }
+  }
+
+  .content {
+    .mat-tab-group,
+    .mat-tab-body-wrapper,
+    .tab-content {
+      flex: 1 1 auto;
+      max-width: 100%;
+    }
+
+    .mat-tab-body-content {
+      display: flex;
+    }
+
+    .mat-tab-label {
+      height: 64px;
+    }
+
+    .tenatn-image {
+      overflow: hidden;
+      width: 128px;
+      height: 128px;
+      margin-right: 16px;
+      margin-bottom: 16px;
+      border-radius: 4px;
+
+      img {
+        height: 100%;
+        width: auto;
+        max-width: none;
+      }
+    }
+
+    // Temporary prefix alignment fix
+    .mat-form-field-appearance-outline .mat-form-field-prefix,
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+      top: 0;
+    }
+  }
+}
+
+.wp-60 {
+  min-width: 60% !important;
+}
+
+@media (min-width: 0) and (max-width: 1024px) {
+  .wp-60 {
+    min-width: 80% !important;
+  }
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-form-field {
+  margin-right: 25px;
+}
+
+.pb-24 {
+  padding-bottom: 24px !important;
+}
+.pt-24 {
+  padding-top: 24px !important;
+}
+
+.p-24 {
+  padding: 24px !important;
+}
+
+.width-75 {
+  max-width: 90% !important;
+  min-width: 70% !important;
+}
+
+#product .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px !important;
+}
+
+.mat-checkbox {
+  font-size: 10px;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+.mat-expansion-border {
+  border-top: 1px solid #f5f5f5 !important;
+  border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.cancelbtn{
+  color: black !important;
+  margin-bottom: 8px !important;
+  text-decoration: none !important;
+}

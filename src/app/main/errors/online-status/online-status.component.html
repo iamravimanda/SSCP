@@ -1,0 +1,10 @@
+<div *ngIf="onlineStatus === 'online'" class="online">
+    <span>{{onlineStatusMessage}}</span>
+</div>
+
+<div *ngIf="onlineStatus === 'offline'" class="offline">
+    <div class="overlay"></div>
+    <div class="content">
+        <p>{{onlineStatusMessage}}</p>
+    </div>
+</div>

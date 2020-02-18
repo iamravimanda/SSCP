@@ -1,0 +1,49 @@
+<div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs class="logo-img">
+        <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="assets/images/backgrounds/Device & Logo.png" style="margin-left: 200px;margin-top: 100px;">
+        </div>
+    </div>
+
+    <div id="login-form-wrapper" fusePerfectScrollbar [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+        <div id="login-form">
+            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+            <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!loginForm.get('email').hasError('required') &&
+                                loginForm.get('email').hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                    fxLayoutAlign="space-between center">
+                    <!-- <mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox> -->
+                    <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password'">
+                        Forgot Password?
+                    </a>
+                </div>
+                <button type="submit" mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                    [disabled]="loginForm.invalid">
+                    LOGIN
+                </button>
+            </form>
+            <p class="error">{{errorMessage}}</p>
+        </div>
+    </div>
+</div>

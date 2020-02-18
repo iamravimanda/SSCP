@@ -1,0 +1,43 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="start center" class="p-24">
+
+        <div class="close-button-wrapper" fxFlex="0 1 auto" fxFlex.gt-sm="220px" (click)="deselectAll()">
+            <button class="p-8" mat-button fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="mr-8">arrow_back</mat-icon>
+                <span class="text-uppercase">Back</span>
+            </button>
+        </div>
+        
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.gt-sm="space-between center">
+            
+            <div>
+                <span class="selected-contacts-count" class="cy-p-10">
+                        <button mat-raised-button color="primary" class="cy-btn ">Re-provisioning</button>
+                 </span>               
+                <span class="selected-contacts-count" class="cy-p-10">
+                        <button mat-raised-button color="primary" class="cy-btn">Send Command</button>
+                </span>
+
+                <span class="selected-contacts-count" class="cy-p-10">
+                    <button mat-raised-button color="primary" class="cy-btn" (click)="deleteselectedDevices()">Delete</button>
+               </span>
+                <br/>
+                <br/>
+                <span class="selected-contacts-count" class="cy-p-10">
+                    <span class="mr-4">{{selectedDevices.length}}</span>
+                    <span *ngIf="selectedDevices.length ==1">Device selected</span>
+                    <span *ngIf="selectedDevices.length !=1">Devices selected</span>
+                </span>
+    
+                <!-- <button mat-icon-button [matMenuTriggerFor]="selectMenu">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button> -->
+                <mat-menu #selectMenu="matMenu">
+                    <button mat-menu-item (click)="selectAll()">Select all</button>
+                    <button mat-menu-item (click)="deselectAll()">Deselect all</button>
+                </mat-menu>
+               
+            </div>    
+    
+        </div>
+    
+    </div>    

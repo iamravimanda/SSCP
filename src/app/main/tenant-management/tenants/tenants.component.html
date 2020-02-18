@@ -1,0 +1,188 @@
+<div id="tenants" class="page-layout carded fullwidth outer-scroll" fusePerfectScrollbar>
+    <div *ngIf="showLoadingIndicator" class="spinner"></div>
+
+    <div class="center" style="padding:0px">
+
+        <div class="content">
+            <div class="example1-table-container" style="border-radius: 6px;">
+                <mat-table #table [dataSource]="tenantsData" class="example1-table inner-scroll" id="tenantsList" style="border-top-left-radius: 6px; border-top-right-radius: 6px; box-shadow: none;" multiTemplateDataRows matSort matSortActive="tenentCode">
+                    <ng-container matColumnDef="tenentCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="new-col col-width-tenantId">
+                            <span>Tenant Code</span>
+                        </th>
+                        <td mat-cell mat-cell *matCellDef="let element" class="new-col col-width-tenantId" matTooltip="{{ element.TenantSlug }}">
+                            <span class="force-select">
+                                {{ element.tenentCode }}
+                            </span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef class="new-col col-width-Tenantname" style="width:100%">
+                            <div fxFlexFill>
+                                <mat-form-field floatPlaceholder="never" style="width: 100px;margin-top:10px">
+                                    <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                                    <div>
+                                        <input id="name" type="text" placeholder="Name" aria-label="Name" matInput [formControl]="NameControl" [matAutocomplete]="auto" (keyup)="nameFilter($event.target.value)" />
+                                    </div>
+                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{ option }}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width-Tenantname" matTooltip="{{ element.Name }}">
+                            <span [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">
+                            <u class="text-elipisis"> {{ element.name }} </u>
+                        </span>
+                            <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="flase">
+                                <mat-card>
+                                    <mat-card-title class="p-12" style="background-color:
+                                    #039BE5;font-size: inherit;color:
+                                    #ffffff;border-top-left-radius:
+                                    6px;border-top-right-radius: 6px;">
+                                        Contact Details
+                                    </mat-card-title>
+                                    <mat-card-content class="p-12">
+                                        <div class="p-5">
+                                            {{ element.primaryContactName }}
+                                        </div>
+                                        <div class="p-5">
+                                            {{ element.primaryContactJobTitle }}
+                                        </div>
+                                        <div class="p-5">
+                                            {{ element.primaryContactPhone }}
+                                        </div>
+                                        <div class="p-5">
+                                            {{ element.primaryContactEmail }}
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </mde-popover>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="country">
+                        <th mat-header-cell *matHeaderCellDef class="new-col col-width">
+                            <mat-form-field floatPlaceholder="never" style="width: 100px;margin-top: 10px;">
+                                <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                                <div>
+                                    <input id="country" type="text" placeholder="Country" aria-label="country" matInput [formControl]="countryControl" [matAutocomplete]="auto" (keyup)="countryFilter($event.target.value)" />
+                                </div>
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                    <mat-option *ngFor="let option of
+                                        countryfilteredOptions | async" [value]="option">
+                                        {{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col
+                            col-width">
+                            {{ element.country }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="state">
+                        <th mat-header-cell *matHeaderCellDef class="col-width" style="min-width: 120px;">
+                            <mat-form-field floatPlaceholder="never" style="width: 100px;margin-top: 10px;">
+                                <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                                <div>
+                                    <input id="state" type="text" placeholder="State" aria-label="country" matInput [formControl]="stateControl" [matAutocomplete]="auto" (keyup)="stateFilter($event.target.value)" />
+                                </div>
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                    <mat-option *ngFor="let option of statefilteredOptions | async" [value]="option">
+                                        {{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width">
+                            <span class="stateText">
+                            {{ element.state }}
+                           </span>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="primaryContactName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="new-col col-width">
+                            Primary Contact
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width">
+
+
+                        </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="createdBy">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="new-col col-width">
+                            Created By
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width">
+                            {{ element.createdBy }}
+                        </td>
+                    </ng-container> -->
+                    <!-- <ng-container matColumnDef="createdDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="new-col col-width">
+                            Created Date
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width">
+                            {{ element.createdDate | date: 'yyyy/MM/dd' }}
+                        </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="new-col col-width">
+                            Status
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="new-col col-width">
+                            <div fxFlex="row" fxLayoutAlign="end center" class="p-5">
+                                <img src="{{element.status | tenantStatusIconPipe}}" class="status-icon-img"> {{ element.status | tenantStatusPipe }}
+                            </div>
+                            <div fxFlex="row" fxLayoutAlign="end center" style="padding:5px;">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item [routerLink]="['/tenants/copy', element.tenantId]">
+                                        <span><a [routerLink]="['/tenants/copy', element.tenantId]" class="a-tag"><mat-icon>file_copy</mat-icon> Copy & Create</a></span>
+                                    </button>
+                                    <button mat-menu-item [routerLink]="['/tenants/View/', element.tenantId ]">
+                                        <span><a [routerLink]="['/tenants/View/', element.tenantId ]" class="a-tag"><mat-icon>view_quilt</mat-icon> View</a></span>
+                                    </button>
+                                    <button mat-menu-item [routerLink]="['/tenants/', element.tenantId ]" *ngIf="element.status != 'DELETED'">
+                                        <span><a [routerLink]="['/tenants/', element.tenantId ]" class="a-tag"><mat-icon>edit</mat-icon> Edit</a></span>
+                                    </button>
+                                    <button mat-menu-item (click)="deleteTenant(element)">
+                                        <span><mat-icon>delete</mat-icon> Remove</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let element; columns: columnsToDisplay"></tr>
+                </mat-table>
+            </div>
+            <div mat-paginator>
+                <mat-paginator [pageSize]="10" showFirstLastButtons style="border-bottom-left-radius:6px;
+                    border-bottom-right-radius:6px;padding:3px 8px" class="mat-paginator-sticky" (page)="pageEvent= onPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+    <!-- <div style="display: flex; margin-right: 90px; margin-bottom: 20px;
+        position: fixed; bottom: 0; right: 0; z-index: 10000000;"
+        fxLayoutAlign="end end">
+        <button mat-fab class="accent" id="add-contact-button"
+            (click)="addTenant()" aria-label="add tenant" [@animate]="{ value: '*', params: { delay: '300ms', scale: '.2' }}">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+    </div> -->
+</div>
+
+
+
+
+<!-- ADD CONTACT BUTTON -->
+<!-- <button mat-fab class="accent" id="add-contact-button" (click)="newContact()" aria-label="add contact"
+    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>person_add</mat-icon>
+</button> -->
+<!-- / ADD CONTACT BUTTON -->

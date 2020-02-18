@@ -1,0 +1,20 @@
+<fuse-progress-bar></fuse-progress-bar>
+
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-1'">
+    <vertical-layout-1></vertical-layout-1>
+</ng-container>
+
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-2'">
+    <vertical-layout-2></vertical-layout-2>
+</ng-container>
+
+<ng-container *ngIf="fuseConfig.layout.style === 'vertical-layout-3'">
+    <vertical-layout-3></vertical-layout-3>
+</ng-container>
+
+<ng-container *ngIf="fuseConfig.layout.style === 'horizontal-layout-1'">
+    <horizontal-layout-1></horizontal-layout-1>
+</ng-container>
+
+<app-online-status [onlineStatusMessage]="connectionStatusMessage" [onlineStatus]="connectionStatus">
+</app-online-status>

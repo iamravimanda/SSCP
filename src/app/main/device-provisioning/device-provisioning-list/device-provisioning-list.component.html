@@ -1,0 +1,322 @@
+<div id="orders" class="example-container " style="border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;">
+    <div *ngIf="showLoadingIndicator" class="dpSpinner"></div>
+
+    <div class="example-table-container" style="border-radius: 6px;" fusePerfectScrollbar>
+        <table mat-table [dataSource]="requestsData" matSort multiTemplateDataRows class="example-table">
+
+            <ng-container matColumnDef="ProvisioningRequestId">
+                <th mat-header-cell *matHeaderCellDef class="col2 width-150"> Request ID
+                </th>
+                <td matTooltip="{{element.ProvisioningRequestId}}" mat-cell *matCellDef="let element"
+                    class="col2 td-on-hover width-150 border-bottom-none">
+                    <p>
+                        <span class="titleText">{{element.ProvisioningRequestId}}</span>
+                        <span class="copy-icon">
+                            <button mat-icon-button (click)="onClickCopyId($event, element.ProvisioningRequestId)">
+                                <mat-icon style="margin-bottom: 20px;font-size:16px">file_copy</mat-icon>
+                            </button>
+                        </span>
+                    </p>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="TenantId">
+                <th mat-header-cell *matHeaderCellDef class="col2 width-150">
+                    <span mat-sort-header>Company Name </span>
+
+                </th>
+
+                <td matTooltip="{{element.TenantName}}" mat-cell *matCellDef="let element"
+                    class="col2 border-bottom-none width-150">
+                    {{element.TenantName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="FileName">
+                <th mat-header-cell *matHeaderCellDef class="col2 width-150"> File Name
+                </th>
+                <td matTooltip="{{element.FileProperties.FileName}}" mat-cell *matCellDef="let element"
+                    class="col2 td-on-hover width-150 border-bottom-none">
+
+                    <a href="{{element.FileProperties.StorageLocation}}" target="_blank"
+                        *ngIf='element.FileProperties.FileName'>
+                        <span class="titleText" style="width:72px !important">{{element.FileProperties.FileName}}</span>
+                        <span>
+                            <mat-icon style="font-size: 16px;">arrow_downward</mat-icon>
+                        </span>
+                    </a>
+                    <span class="copy-icon" *ngIf='element.FileProperties.FileName'>
+                        <button mat-icon-button (click)="onClickCopyId($event, element.FileProperties.FileName)">
+                            <mat-icon style="margin-bottom: 20px;font-size:16px">file_copy</mat-icon>
+                        </button>
+                    </span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="CreatedDate">
+
+                <th mat-header-cell *matHeaderCellDef class="col2 width-150">
+                    <span mat-sort-header>Created Date</span>
+
+                </th>
+                <td matTooltip="{{element.CreatedDate | date:'shortDate'}}" mat-cell
+                    class="width-150 border-bottom-none" *matCellDef="let element">
+                    {{element.CreatedDate | date:'short'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef class="col2 width-150">
+                    <span mat-sort-header> Status </span>
+
+
+                </th>
+                <td mat-cell *matCellDef="let element" class="col2 width-150 border-bottom-none">
+                    <div>
+                        <span [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="hover"
+                            #popoverTrigger="mdePopoverTrigger">
+                            <img src="{{element.Status | statusIcon}}"
+                                style="margin-top: 2px !important; height: 15px !important;">
+                            {{element.Status | convertStatus}}
+                        </span>
+
+                        <span>
+                            <mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="flase">
+
+                                <div class="faild-popup"
+                                    *ngIf="(element.Status=='FailedProvisioning' && element.FailureReason != null)">
+                                    <div class="p-5">
+                                        {{element.FailureReason}}
+                                    </div>
+                                </div>
+                            </mde-popover>
+                        </span>
+                    </div>
+
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Buttons">
+                <th mat-header-cell *matHeaderCellDef class="buttons-width">
+                    <span mat-sort-header> </span>
+
+                </th>
+                <td mat-cell *matCellDef="let element" class="border-bottom-none">
+
+
+                    <div fxFlex="row"  style="padding:5px;">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+                            (click)="PriventRowClick($event)">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="deleteProvision(element)">
+                                <mat-icon>delete</mat-icon>
+                                <span>De-Provision</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length+1">
+                    <div class="example-element-detail" [@detailExpand]="element ==
+                expandedElement ? 'expanded' :
+                'collapsed'">
+                        <div class="example-element-diagram">
+                            <div class="fuse-card auto-width">
+                                <div class="h-200">
+                                    <ngx-charts-pie-chart [legendPosition]="'below'" *fuseIfOnDom [scheme]="chartSchema"
+                                        [results]="chartData" [doughnut]="false" [tooltipDisabled]="false"
+                                        [labels]="false" [legend]="false" (select)="onChartClick($event)">
+                                    </ngx-charts-pie-chart>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-element-description" fxLayoutAlign="end ">
+
+                            <div class="fuse-card auto-width" style="max-height: 390px;width:100%">
+                                <table class="simple clickable tableFixHead">
+                                    <thead>
+                                        <tr style="padding:4px !important">
+                                            <th colspan="2" style="padding:4px !important">
+                                                <span>Selected:
+                                                    <b>
+                                                        <span *ngIf="!selectedStatus">None</span>
+                                                        {{selectedStatus}}
+                                                    </b>
+                                                    <a style="font-size: x-small;" [disabled]="!selectedStatus"
+                                                        mat-button href="javascript: void(0)"
+                                                        (click)="resetDeviceSelection()" *ngIf="show" >
+                                                        <mat-icon style="margin-top: 10px;font-size: small;">refresh
+                                                        </mat-icon>
+                                                    </a>
+                                                </span>
+
+
+                                            </th>
+                                            <th colspan="3" style="padding:4px !important">
+                                                <div mat-paginator style="float: right;">
+                                                    <ul *ngIf="Devicepager.pages && Devicepager.pages.length && dataSubSource != null"
+                                                        class="m-0">
+                                                        Showing <span *ngIf="Devicepager.currentPage!=1">
+                                                            {{(Devicetake*(Devicepager.currentPage-1))+1}}
+                                                        </span>
+                                                        <span *ngIf="Devicepager.currentPage===1">
+                                                            1
+                                                        </span>
+                                                        to
+                                                        <span
+                                                            *ngIf="(Devicetake*Devicepager.currentPage)>totalDeviceRecords">
+                                                            {{totalDeviceRecords}}
+                                                        </span>
+                                                        <span
+                                                            *ngIf="(Devicetake*Devicepager.currentPage)<totalDeviceRecords">
+                                                            {{(Devicetake*Devicepager.currentPage)}}
+                                                        </span>
+                                                        of {{totalDeviceRecords}}
+                                                        <button mat-icon-button class="button-height"
+                                                            (click)="setDevicePager(1, 'first')"
+                                                            [disabled]="Devicepager.currentPage === 1">
+                                                            <mat-icon>first_page</mat-icon>
+                                                        </button>
+                                                        <button mat-icon-button class="button-height"
+                                                            (click)="setDevicePager(Devicepager.currentPage-1,'prev')"
+                                                            [disabled]="Devicepager.currentPage === 1">
+                                                            <mat-icon>navigate_before</mat-icon>
+                                                        </button>
+                                                        <button mat-icon-button class="button-height"
+                                                            (click)="setDevicePager(Devicepager.currentPage+1,'next')"
+                                                            [disabled]="Devicepager.currentPage === Devicepager.totalPages">
+                                                            <mat-icon>navigate_next</mat-icon>
+                                                        </button>
+                                                        <button mat-icon-button class="button-height"
+                                                            (click)="setDevicePager(Devicepager.totalPages,'last')"
+                                                            [disabled]="Devicepager.currentPage === Devicepager.totalPages">
+                                                            <mat-icon>last_page</mat-icon>
+                                                        </button>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th><span>Device </span></th>
+                                            <th>Type</th>
+                                            <th>Group</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr *ngFor="let row of dataSubSource" (click)="openDialog(row)"> -->
+                                        <tr *ngFor="let row of dataSubSource">
+                                            <td>{{row.DeviceId}}</td>
+                                            <td>{{row.DeviceType}}</td>
+                                            <td>{{row.DeviceGroup}}</td>
+                                            <td [mdePopoverTriggerFor]="appPopover" mdePopoverTriggerOn="hover"
+                                                #popoverTrigger="mdePopoverTrigger">
+
+                                                <span>
+
+
+                                                    <img src="{{row.Status | statusIcon}}"
+                                                        style="margin-top: 2px !important; height: 10px !important;">
+                                                    {{row.Status | convertStatus}}
+                                                </span>
+                                                <div>
+
+                                                    <mde-popover #appPopover="mdePopover"
+                                                        [mdePopoverOverlapTrigger]="flase">
+                                                        <div class="faild-popup"
+                                                            *ngIf="row.Status=='FailedProvisioning' && row.FailureReason != null">
+                                                            <div class="p-5">
+                                                                {{row.FailureReason}}
+                                                            </div>
+                                                        </div>
+
+                                                    </mde-popover>
+                                                </div>
+
+
+                                            </td>
+                                            <td>
+                                                <div fxFlex="row" fxLayoutAlign="end center">
+                                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                        class="buttons-height"
+                                                        aria-label="Example icon-button with a menu">
+                                                        <mat-icon>more_vert</mat-icon>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu">
+                                                        <button mat-menu-item
+                                                            (click)="deleteProvisionRequestDevice(element.ProvisioningRequestId,row.DeviceId)">
+                                                            <mat-icon>delete</mat-icon>
+                                                            <span>De-Provision</span>
+                                                        </button>
+                                                    </mat-menu>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="dataSubSource == null ">
+                                            <td colspan="5">
+                                                No Devices to display
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div *ngIf="showLoadingIndicator1" class="dvspinner"></div>
+
+                        </div>
+
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay;sticky:true;"></tr>
+
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay" class="example-element-row"
+                [class.example-expanded-row]="expandedElement === element" (click)="onRowClick($event, element);">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+        </table>
+        <ng-container *ngIf="!flag">
+            <p style="text-align: center;">There are no records available for the selected dates and search criteria,
+                please change if any</p>
+        </ng-container>
+    </div>
+    <!-- <mat-paginator [pageSizeOptions]="[10, 15,20]" showFirstLastButtons style="font-size: 14px;color:#616161">
+    </mat-paginator> -->
+    <div mat-paginator style="float:right">
+
+        <ul *ngIf="pager.pages && pager.pages.length && flag">
+            <span class="pagination-display">
+                Records for Page 10
+            </span>
+            &nbsp;
+            <span *ngIf="pager.currentPage!=1">
+                {{(take*(pager.currentPage-1))+1}}
+            </span>
+            <span *ngIf="pager.currentPage===1">
+                1
+            </span>
+            -
+            <span *ngIf="(take*pager.currentPage)>=totalRecords">
+                {{totalRecords}}
+            </span>
+            <span *ngIf="(take*pager.currentPage)<totalRecords">
+                {{(take*pager.currentPage)}}
+            </span>
+            of {{totalRecords}}
+            <button mat-icon-button (click)="setPager(1, 'first')" [disabled]="pager.currentPage === 1">
+                <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button (click)="setPager(pager.currentPage-1,'prev')" [disabled]="pager.currentPage === 1">
+                <mat-icon>navigate_before</mat-icon>
+            </button>
+            <button mat-icon-button (click)="setPager(pager.currentPage+1,'next')"
+                [disabled]="pager.currentPage === pager.totalPages">
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+            <button mat-icon-button (click)="setPager(pager.totalPages,'last')"
+                [disabled]="pager.currentPage === pager.totalPages">
+                <mat-icon>last_page</mat-icon>
+            </button>
+        </ul>
+    </div>
+</div>

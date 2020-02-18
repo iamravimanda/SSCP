@@ -1,0 +1,154 @@
+table {
+  width: 100% !important;
+}
+
+mt-17 {
+  margin-top: 17px;
+}
+
+table.simple.clickable tbody tr {
+  &:hover {
+    background-color: #a4c7d9;
+  }
+}
+
+#devices tr.mat-row {
+  height: 52px !important;
+  cursor: pointer;
+}
+/* Structure */
+.example-container {
+  position: relative;
+  min-height: 200px;
+}
+
+
+.example-table-container1 {
+  position: relative;
+  // max-height: 400px !important;
+  //  overflow: auto;
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+table.example-table.mat-table tr td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  padding: 0px 12px !important;
+ 
+}
+
+.width-150{
+  width: 150px !important;
+}
+
+.mat-header-cell {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mat-select-panel {
+  max-width: 150px !important;
+}
+.mat-option {
+  font-size: 12px !important;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.col2 {
+  max-width: 100px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#devices tr.mat-header-row.ng-star-inserted {
+  height: 68px !important;
+  background: #ffffff !important;
+  vertical-align: initial;
+}
+
+#devices th.mat-header-cell {
+  padding: 8px !important;
+}
+// #devices th.mat-header-cell,
+// td.mat-cell {
+//   width: 150px !important;
+// }
+#devices {
+  .mat-checkbox-inner-container {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+.dmspinner {
+  border: 5px solid rgb(201, 224, 247);
+  border-top: 5px solid #337ab7;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 800ms linear infinite;
+  top: 35%;
+  left: 50%;
+  position: absolute;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (min-width: 0) and (max-width: 414px) {
+  td.mat-cell,
+  td.mat-footer-cell,
+  th.mat-header-cell {
+    width: 100% !important;
+    padding: 0px 10px 0px 10px !important;
+  }
+}

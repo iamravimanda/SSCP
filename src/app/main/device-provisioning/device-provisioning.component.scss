@@ -1,0 +1,326 @@
+@import "src/@fuse/scss/fuse";
+
+#contacts {
+
+  .comp-drp-wdt{
+    margin-right: 5px;
+    width: 220px;
+  }
+  .header {
+    .no-search {
+      width: 100%;
+      min-width: 60px;
+      max-width: 100%;
+      border-radius: 28px;
+      background: white;
+      overflow: hidden;
+      margin: 0 5px;
+      @include mat-elevation(1);
+
+      .element {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        padding: 0 10px;
+
+        input {
+          width: 100%;
+          height: 35px;
+          min-height: 35px;
+          max-height: 35px;
+          padding: 0 10px;
+          margin-top: 0 !important;
+          border: none;
+          outline: none;
+          color: #757575;
+        }
+
+        .mat-select-arrow {
+          color: #757575 !important;
+        }
+
+        
+      }
+    }
+    .search-wrapper {
+      width: 100%;
+      max-width: 100%;
+      min-width: 60px;
+      border-radius: 28px;
+      background: white;
+      overflow: hidden;
+      @include mat-elevation(1);
+
+      .search {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        padding: 0 10px;
+        color: #757575;
+
+        input {
+          width: 100%;
+          height: 35px;
+          min-height: 35px;
+          max-height: 35px;
+          padding: 0 10px;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .content {
+    overflow: hidden;
+
+    .sidebar {
+      &:not(.locked-open) {
+        background: white;
+      }
+    }
+  }
+
+  .width400 {
+    width: 340px !important;
+  }
+}
+
+.mat-select-value {
+  color: #BABABA !important;
+}
+
+.mat-select-arrow{
+  color: #BABABA !important;
+}
+
+.todate-fromdate{
+  display: inline-block;
+   margin-bottom: .5rem;
+   margin-left: 1rem;
+   font-size: 14px;
+   color: #ffffff;
+}
+.mat-datepicker-content .mat-calendar {
+  width: 202px !important;
+  height: 224px !important;
+}
+
+button.mat-calendar-period-button.mat-button {
+  font-size: small !important;
+}
+.mat-calendar-controls{
+  margin: 0px !important;
+}
+.pl-15{
+  padding-left: 15px !important;
+}
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  padding: 0px 12px !important;
+}
+
+#contacts .header .search-wrapper {
+  width: 100% !important;
+  margin: 0 5px !important;
+}
+
+#contacts .header .no-search {
+  width: 100% !important;
+  margin: 0 5px !important;
+}
+
+.mat-expansion-indicator {
+  display:none !important;  
+}
+
+.h1 {
+  font-size: 20px !important;
+}
+@media (min-width: 0) and (max-width: 768px) {
+  .h1 {
+    font-size: 14px !important;
+  }
+  .header {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex-direction: column !important;
+
+    .noflex {
+      flex: 0 !important;
+    }
+
+    .hdr {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      width: 100%;
+
+      .hdr-form {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+
+        .no-search {
+          margin: 5px !important;
+
+          .element {
+            width: 100% !important;
+            height: 35px;
+            min-height: 35px;
+            max-height: 35px;
+          }
+        }
+
+        .search-wrapper {
+          display: inline-block;
+
+          label {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+          }
+
+          .search {
+            width: 100%;
+            border-radius: 28px;
+            background: white;
+            overflow: hidden;
+            margin-top: 6px !important;
+            @include mat-elevation(1);
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            padding: 0 10px;
+            color: #757575;
+
+            input {
+              width: 100%;
+              height: 35px;
+              min-height: 35px;
+              max-height: 35px;
+              padding: 0 10px;
+              border: none;
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mb-30 {
+    margin-bottom: 30px;
+  }
+  .mt-12 {
+    margin-top: 12px;
+  }
+}
+.heading {
+  margin-top: -60px;
+}
+
+#contacts .top-bg.accent {
+  height: 209px !important;
+}
+
+th.ng-star-inserted {
+  background-color: #ffffff !important;
+}
+.mat-calendar-table-header th {
+  padding: 0px !important;
+}
+
+ .mat-expansion-panel-clr{
+  background: none !important;
+  color: white !important;
+  box-shadow : none !important;
+  .mat-expansion-panel-body{
+    padding: 5px 0px 5px 5px;
+  }
+  }
+  .mat-expansion-panel-header{
+    height: 72px !important;
+    padding: 0px !important;
+  }
+  .input-text-clr{
+    background: white !important;
+    color:black !important;
+    border-radius: 30px !important;
+    height: 36px !important;
+  }
+  .status-drp{
+    width: 150px !important;
+    background: white !important;
+    border-radius: 30px !important;
+    height: 36px !important;
+  }
+
+  .ml-6{
+    margin-left: 6px;
+  }
+  
+
+  .status-drp-opt-clr{
+    color:black !important;
+  }
+
+@media (min-width: 0) and (max-width: 440px) {
+  #contacts .top-bg.accent {
+    height: 338px !important;
+  }
+  #contacts .content {
+    padding-top: 130px;
+  }
+
+  #contacts .header {
+    padding-top: 20px;
+  }
+
+  .p-tb-10 {
+    padding: 10px 0px;
+  }
+  #contacts .width400 {
+    width: 100% !important;
+  }
+
+  #contacts .comp-drp-wdt{
+    width: auto;
+  }
+
+  .pagination-display{
+    display: flex;
+  }
+
+  .serchbtn{
+margin-top: -23px !important;
+  }
+}
+
+@media (min-width: 0) and (max-width: 320px) {
+  #contacts .comp-drp-wdt{
+    width: auto;
+  }
+}
+
+canvas.chartjs-render-monitor {
+  height: 180px !important;
+}
+
+.search-btn{
+  background-color: #023A64 !important;
+  line-height: 32px !important;
+  margin-top: 22px;
+
+}
+
+
+@-moz-document url-prefix() { 
+  #contacts .header .no-search .element input{
+    width: 75% !important;
+  }
+  
+} 
+
+.disable_ripple:hover{
+  background: none !important;
+  }

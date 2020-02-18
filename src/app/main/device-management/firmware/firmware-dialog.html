@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    Firmware Release
+    <button style="float: right !important;" (click)="onCloseClick()" mat-icon-button
+        aria-label="Close firmware create dialog">
+        <mat-icon matSuffix>close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.releaseName" placeholder="Release Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.version" placeholder="Version">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Device Type</mat-label>
+        <select matNativeControl [(ngModel)]="data.deviceType">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.releaseDate" placeholder="Release Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <input type="file" #imageUpload accept="image/*" (change)="data.image = imageUpload.files" [hidden]="true">
+    <mat-form-field>
+        <input matInput placeholder="Upload Image" (click)="imageUpload.click()">
+        <mat-icon matSuffix>open_in_browser</mat-icon>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onCloseClick()" class="btn-colored-black rounded">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" class="btn-colored-blue rounded" cdkFocusInitial>Save</button>
+</div>
